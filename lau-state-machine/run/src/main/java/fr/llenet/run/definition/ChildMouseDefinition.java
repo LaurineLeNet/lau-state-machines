@@ -23,7 +23,6 @@ public class ChildMouseDefinition extends ProcessDefinition {
     protected void initProcessingDefinition() {
         State toothReceived = State.withName(Fields.TOOTH_RECEIVED);
         State toothVerified = State.withName(Fields.TOOTH_VERIFIED);
-        State orderMoney = State.withName(Fields.ORDER_MONEY);
         State moneyOrdered = State.withName(Fields.MONEY_ORDERED);
         State moneyReceived = State.withName(Fields.MONEY_RECEIVED);
         State shippingToPillow = State.withName(Fields.SHIPPING_TO_PILLOW);
@@ -41,20 +40,11 @@ public class ChildMouseDefinition extends ProcessDefinition {
 
         toothVerified
                 .when(HasCavityCondition.class)
-                .then(orderMoney)
-                .withAction(SendToothToTrash.class)
-                .withPriority(1);
-        toothVerified
-                .then(orderMoney)
-                .withAction(SendToothToCastle.class);
-
-        orderMoney
-                .when(HasCavityCondition.class)
                 .then(moneyOrdered)
                 .withAction(OrderLittleMoney.class)
                 .withPauseAfterTransition()
                 .withPriority(1);
-        orderMoney
+        toothVerified
                 .then(moneyOrdered)
                 .withAction(OrderBigMoney.class)
                 .withPauseAfterTransition();
@@ -67,10 +57,6 @@ public class ChildMouseDefinition extends ProcessDefinition {
                 .withAction(MoneyReceivedAction.class)
                 .withPostActions(UpdateToothOrder.class)
                 .withPriority(2);
-        moneyOrdered
-                .when(RelaunchOrderMoneyCondition.class)
-                .then(orderMoney)
-                .withPriority(1);
         moneyOrdered
                 .then(moneyOrdered)
                 .withPauseAfterTransition();
