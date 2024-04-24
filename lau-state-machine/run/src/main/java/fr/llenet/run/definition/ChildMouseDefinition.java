@@ -21,13 +21,13 @@ public class ChildMouseDefinition extends ProcessDefinition {
 
     @Override
     protected void initProcessingDefinition() {
-        State toothReceived = State.withName(Fields.TOOTH_RECEIVED);
-        State toothVerified = State.withName(Fields.TOOTH_VERIFIED);
-        State orderMoney = State.withName(Fields.ORDER_MONEY);
-        State moneyOrdered = State.withName(Fields.MONEY_ORDERED);
-        State moneyReceived = State.withName(Fields.MONEY_RECEIVED);
-        State shippingToPillow = State.withName(Fields.SHIPPING_TO_PILLOW);
-        State complete = State.withName(Fields.COMPLETE);
+        State toothReceived = State.withName(StateName.TOOTH_RECEIVED.name());
+        State toothVerified = State.withName(StateName.TOOTH_VERIFIED.name());
+        State orderMoney = State.withName(StateName.ORDER_MONEY.name());
+        State moneyOrdered = State.withName(StateName.MONEY_ORDERED.name());
+        State moneyReceived = State.withName(StateName.MONEY_RECEIVED.name());
+        State shippingToPillow = State.withName(StateName.SHIPPING_TO_PILLOW.name());
+        State complete = State.withName(StateName.COMPLETE.name());
 
         startState
                 .then(toothReceived)
@@ -84,15 +84,14 @@ public class ChildMouseDefinition extends ProcessDefinition {
                 .withAction(CompleteOrderAction.class);
     }
 
-    @FieldNameConstants
-    public static class StateName {
-        private String toothReceived;
-        private String toothVerified;
-        private String orderMoney;
-        private String moneyOrdered;
-        private String moneyReceived;
-        private String shippingToPillow;
-        private String complete;
+    enum StateName {
+        TOOTH_RECEIVED,
+        TOOTH_VERIFIED,
+        ORDER_MONEY,
+        MONEY_ORDERED,
+        MONEY_RECEIVED,
+        SHIPPING_TO_PILLOW,
+        COMPLETE
     }
 
 }
