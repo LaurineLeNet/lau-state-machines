@@ -67,7 +67,7 @@ public class ChildMouseDefinition extends ProcessDefinition {
                 .withAction(CompleteOrderAction.class);
     }
 
-    public enum StateName {
+    enum StateName {
         TOOTH_RECEIVED,
         TOOTH_VERIFIED,
         ORDER_MONEY,
