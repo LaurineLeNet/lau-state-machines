@@ -2,14 +2,12 @@ package fr.llenet.run.definition;
 
 import fr.llenet.engine.core.State;
 import fr.llenet.engine.definition.ProcessDefinition;
-import fr.llenet.run.definition.ChildMouseDefinition.StateName.Fields;
 import fr.llenet.run.definition.action.*;
 import fr.llenet.run.definition.condition.HasCavityCondition;
 import fr.llenet.run.definition.condition.MoneyReceivedCondition;
 import fr.llenet.run.definition.condition.RelaunchOrderMoneyCondition;
 import fr.llenet.run.definition.postaction.UpdateToothOrder;
 import fr.llenet.run.model.FallenToothOrder;
-import lombok.experimental.FieldNameConstants;
 import org.springframework.stereotype.Component;
 
 @Component
