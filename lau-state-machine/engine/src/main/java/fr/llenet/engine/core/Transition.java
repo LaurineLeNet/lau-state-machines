@@ -13,11 +13,11 @@ import java.util.List;
 public class Transition implements Comparable<Transition>{
     private final State fromState;
     private State toState;
-    private int priority;
-    private Boolean pauseAfterTransition = false;
-    private final List<Class<? extends Condition>> conditions;
     private Class<? extends Action> action = VoidAction.class;
     private List<Class<? extends PostAction>> postActions = new ArrayList<>();
+    private final List<Class<? extends Condition>> conditions;
+    private int priority;
+    private Boolean pauseAfterTransition = false;
 
     @Override
     public int compareTo(Transition o) {
